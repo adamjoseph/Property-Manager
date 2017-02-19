@@ -1,0 +1,129 @@
+<!-- Landlord Dashboard Page -->
+
+<!-- Route Buttons -->
+<div class="container" style="margin: 15px 0px;">
+<button type="button" class="btn btn-danger" ui-sref="search">Home</button>
+<button type="button" class="btn btn-danger" ng-click="pc.logOut()">Logout</button>
+</div>
+
+<!-- Add Properties -->
+<div class="jumbotron">
+<a ui-sref="search"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+    <h2>Add A Property</h2>
+    <div class="row">
+        <div class="col-md-6">
+        	<form>
+         		<div class="form-group">
+                    <label>Property Name</label>
+                    <input type="text" class="form-control" placeholder="Name" ng-model="pc.pname" required>
+                </div>
+                <div class="form-group">
+                    <label>Address 1</label>
+                    <input type="text" class="form-control" placeholder="Address 1" ng-model="pc.address1" required>
+                </div>
+                <div class="form-group">
+                    <label>Address 2</label>
+                    <input type="text" class="form-control" placeholder="Address 2" ng-model="pc.address2">
+                </div>
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text" class="form-control" placeholder="City" ng-model="pc.city" required>
+                </div>
+                <div class="form-group">
+                    <label>State</label>
+                    <input type="text" class="form-control" placeholder="Ex: CA, KY, LA" ng-model="pc.state" required>
+                </div>
+                <div class="form-group">
+                    <label>Zip Code</label>
+                    <input type="text" class="form-control" placeholder="Ex: 90210" ng-model="pc.zip" required>
+                </div>
+                <div class="form-group">
+                    <label>Contact Phone</label>
+                    <input type="tel" class="form-control" placeholder="Contact Phone" ng-model="pc.phone" required>
+                </div>
+            </form>
+    </div><!-- Close Left Half -->
+
+        <div class="col-md-6"><!-- Right Half -->
+            <form>
+            	<div class="form-group">
+                    <label>Rent</label>
+                    <input type="number" class="form-control" placeholder="$0.00" ng-model="pc.rent" required>
+                </div>
+                <div class="form-group">
+                    <label>Square Feet</label>
+                    <input type="number" class="form-control" placeholder="Square Ft." ng-model="pc.sqft" required>
+                </div>
+                <div class="form-group">
+                    <label>Bedrooms</label>
+                    <input type="number" class="form-control" placeholder="Bedrooms" ng-model="pc.bedrooms" required>
+                </div>
+                <div class="form-group">
+                    <label>Bathrooms</label>
+                    <input type="number" class="form-control" placeholder="Bathrooms" ng-model="pc.bathrooms" required>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="" ng-model="pc.pet" required>Pet Friendly?</label>
+                </div>
+                <div class="form-group">
+                    <label>Lease Terms</label>
+                    <input type="number" class="form-control" placeholder="# of Months" ng-model="pc.lease">
+                </div>
+                <div class="form-group">
+                    <label>Property Image</label>
+                    <input type="text" class="form-control" placeholder="Image URL" ng-model="pc.image">
+                </div>
+                <button type="button" class="btn btn-danger" ng-click="pc.addProperty()">Add Property</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Owner Properties -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-4" ng-repeat="p in pc.properties">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{p.propertyName}}
+                    <span class="glyphicon glyphicon-home"></span></h3>
+                </div>
+                <div class="panel-body">
+                    <ul style="list-style: none;">
+                        <li>Address: {{p.address1}}</li>
+                        <li>{{p.city}}, {{p.state}} {{p.zip}}</li>
+                        <li>Phone: {{p.contactPhone}}</li>
+                        <li>Rent: ${{p.rent}}</li>
+                        <li>SqFt: {{p.sqFt}}</li>
+                        <li>Bed/Bath: {{p.bedrooms}}/{{p.bathrooms}}</li>
+                        <li>Pet Friendly: {{pc.pets}}</li>
+                        <li>Lease Terms: {{p.leaseTerms}} months</li>
+                    </ul>
+
+                </div>
+
+                <!-- Hidden update inputs -->
+                <div class="panel-body animated fadeInDown" ng-hide="!editing" ng-show="editing">
+                    <input class="form-control" type="text" ng-model="p.propertyName" placeholder="Property Name">
+                    <input class="form-control" type="text" ng-model="p.address1" placeholder="Address">
+                    <input class="form-control" type="text" ng-model="p.city" placeholder="City">
+                    <input class="form-control" type="text" ng-model="p.state" placeholder="State">
+                    <input class="form-control" type="text" ng-model="p.zip" placeholder="Zip">
+                    <input class="form-control" type="text" ng-model="p.contactPhone" placeholder="Phone">
+                    <input class="form-control" type="number" ng-model="p.rent" placeholder="Rent">
+                    <input class="form-control" type="number" ng-model="p.sqFt" placeholder="SqFt">
+                    <input class="form-control" type="number" ng-model="p.bedrooms" placeholder="Beds">
+                    <input class="form-control" type="number" ng-model="p.bathrooms" placeholder="Baths">
+                    <label>Pets <input class="" type="checkbox" ng-model="p.pets"></label>
+                    <input class="form-control" type="number" ng-model="p.leaseTerms" placeholder="Lease">
+                    <input class="form-control" type="text" ng-model="p.propertyImage" placeholder="Image URL">
+                </div>
+
+                <div class="panel-footer" style="text-align: right;">
+                    <a ng-click="editing = !editing"><span class="glyphicon glyphicon-edit"></span> </a>
+                    <a ng-click="pc.updateProperty(p.propertyId, p); editing = !editing"><span class="glyphicon glyphicon-check"> </span></a>
+                    <a ng-click="pc.deleteProperty(p.propertyId)"><span class="glyphicon glyphicon-trash"> </span></a>
+                </div>
+        </div>
+    </div>
+</div>

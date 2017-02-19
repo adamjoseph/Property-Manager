@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>Property Manager</h1>
+    <p>Connect renters with property managers</p>
+  </div>
+</div>
+
+<div>
+    <h4>New User? <span><a ui-sref="register">Register! </a>Already Registered? <a ng-click="editing = !editing ">Sign In </a></span></h4>
+    <div ng-show="editing">
+    	<form class="form-inline">
+    		<div class="form-group">
+       			 <label>User Name</label>
+        		<input type="text" class="form-control" placeholder="Username" ng-model="sc.uname">
+    		</div>
+    		<button type="button" class="btn btn-danger" ng-click="sc.getUser(sc.uname)">Sign In <span class="glyphicon glyphicon-user"></span></button>
+		</form>
+    </div>
+</div>
+<h2>Search All Our Properties</h2>
+<div>
+    <form id="search-form" class="form-inline">
+        <input class="form-control search" name="city" type="text" placeholder="City" maxlength="20" ng-model="sc.city">
+        <input class="form-control search" name="zip" type="number" placeholder="Zip Code" maxlength="5" ng-model="sc.zip">
+        <input class="form-control search" name="minrent" type="nubmer" placeholder="Min Rent" max="100000" ng-model="sc.minrent">
+        <input class="form-control search" name="maxrent" type="number" placeholder="Max Rent" max="1000000" ng-model="sc.maxrent">
+        <input class="form-control search" name="bedrooms" type="number" placeholder="Bedrooms" max="50" ng-model="sc.bedrooms">
+        <input class="form-control search" name="bathrooms" type="number" placeholder="Bathrooms" max="20" ng-model="sc.bathrooms">
+        <button type="button" class="btn btn-danger" ng-click="sc.getProperties()"><span class="glyphicon glyphicon-search"></span>Search</button>
+    </form>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-4" ng-repeat="prop in sc.properties">
+			<div class="panel panel-danger">
+				<div class="panel-heading">
+					<h3 class="panel-title">{{prop.propertyName}}
+					<span class="glyphicon glyphicon-home"></span></h3>
+
+				</div>
+				<div class="panel-body">
+          <div style="border-radius: 5px;">
+            <img ng-src='{{prop.propertyImage}}'>
+          </div>
+					<ul style="list-style: none;">
+						<li>Address: {{prop.address1}}</li>
+						<li>{{prop.city}}, {{prop.state}} {{prop.zip}}</li>
+						<li>${{prop.rent}}</li>
+            <li>Phone: {{prop.contactPhone}}</li>
+            <a ui-sref="search.searchGrid({property: prop})">Details</a>
+					</ul>
+
+				</div>
+		</div>
+	</div>
+</div>

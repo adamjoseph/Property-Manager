@@ -1,0 +1,41 @@
+<div class="jumbotron">
+<a ui-sref="search"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+    <h2>Register As New User</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <ul class="list-unstyled" style="line-height: 2">
+                <li><span class="glyphicon glyphicon-ok"></span> See all your properties</li>
+                <li><span class="glyphicon glyphicon-ok"></span> Add new properties</li>
+                <li><span class="glyphicon glyphicon-ok"></span> Update properties</li>
+                <li><span class="glyphicon glyphicon-ok"></span> Delete properties</li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <form>
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" placeholder="First Name" ng-model="uc.fname">
+                </div>
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" placeholder="Last Name" ng-model="uc.lname">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" placeholder="Email" ng-model="uc.email">
+                </div>
+                <div class="form-group">
+                    <label>Create Username</label>
+                    <input type="text" class="form-control" placeholder="Username" ng-model="uc.uname">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="uc.manager"> Are you a property manager?
+                    </label>
+                </div>
+                <button type="button" class="btn btn-danger" ng-click="uc.addUser()">Create User</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>

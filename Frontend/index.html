@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>Property Manager</title>
+<!-- bower:css -->
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+<!-- endbower -->
+
+<!-- inject:css -->
+<link rel="stylesheet" href="/app/styles/styles.css">
+<link rel="stylesheet" href="/node_modules/angular-toastr/dist/angular-toastr.css">
+<!-- endinject -->
+</head>
+
+<body>
+<div class="container">
+
+    <!-- views will be injected here -->
+    <div ui-view></div>
+
+</div>
+
+
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+<!-- endbower -->
+
+<!-- inject:js -->
+<script src="/app/app.js"></script>
+<script src="/app/property/property.controller.js"></script>
+<script src="/app/core/localstorage.factory.js"></script>
+<script src="/app/core/property.factory.js"></script>
+<script src="/app/core/user.factory.js"></script>
+<script src="/app/search/search.controller.js"></script>
+<script src="/app/user/user.controller.js"></script>
+<script src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="/node_modules/angular-toastr/dist/angular-toastr.tpls.js"></script>
+<!-- endinject -->
+</body>
+</html>
